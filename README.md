@@ -9,7 +9,7 @@ Each edge is assigned a random 'quality' weighting from 1 to 100.
 The algorithm finds disjoint cycles in the graph, attempting to perform as many exchanges as possible and maximise the total weight of the cycles. 
 
 # Run
-* Ensure you have networkx 2 matplotlib and pygraphviz installed.
+* Ensure you have networkx 2, matplotlib and pygraphviz installed.
 * Run ```python ilp.py -s n k``` where n is the number of vertices, k is the maximum cycle length, and omitting -s will show a plot of the graph generated.
 # 
 

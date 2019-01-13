@@ -70,7 +70,7 @@ def display_result(cycles, paths, n):
             cycle_str += '>'
             print(cycle_str)
 
-    print('Exchanges made: {exchanges} out of a possible {n}'.format(exchanges=exchanges, n=n))
+    print('{n} pairs, {exchanges} exchanges made'.format(exchanges=exchanges, n=n))
                 
 def main():
     parser = argparse.ArgumentParser()
@@ -80,7 +80,7 @@ def main():
     args = parser.parse_args()
     G = gen.random_graph_no_alts(args.n)
     if args.show:
-        pos = nx.nx_agraph.graphviz_layout(G, prog='dot')
+        pos = nx.nx_agraph.graphviz_layout(G, prog='neato')
         nx.draw_networkx(G, pos, arrows=True, with_labels=True)
         plt.axis('off')
         plt.show()
