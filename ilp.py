@@ -31,7 +31,7 @@ def find_best_cycle(node, M, weights, current_cycles):
     best_weight = 0
     best = None
     for i, row in enumerate(M):
-        if row[node - 1] == 1 and is_disjoint(row, M, current_cycles) and weights[i] > best_weight:
+        if row[node] == 1 and is_disjoint(row, M, current_cycles) and weights[i] > best_weight:
             best = i
             best_weight = weights[i]
     return best
@@ -52,7 +52,7 @@ def greedy_solve(k, G, n):
     cycles = []
     weights = [weight(path, G) for path in cycle_paths]
     for i in range(n):
-        node_best = find_best_cycle(i+1, M, weights, cycles)
+        node_best = find_best_cycle(i, M, weights, cycles)
         cycles.append(node_best)
     display_result(cycles, cycle_paths, n)
 
@@ -80,7 +80,9 @@ def main():
     args = parser.parse_args()
     G = gen.random_graph_no_alts(args.n)
     if args.show:
-        nx.draw(G)
+        pos = nx.nx_agraph.graphviz_layout(G, prog='dot')
+        nx.draw_networkx(G, pos, arrows=True, with_labels=True)
+        plt.axis('off')
         plt.show()
     greedy_solve(args.k, G, args.n)
 
